@@ -191,7 +191,7 @@ static std::string patchYaml(
 
             if (auto it = resolvedVersions.find(pkgName); it != resolvedVersions.end()) {
 
-                std::string newVer = it->second;
+                std::string newVer = "^" + it->second;
 
                 if (excluded.contains(it->first)) {
                     out << line << "\n";
@@ -317,7 +317,8 @@ int main(int argc, char* argv[])
     // Back up first
     fs::path bakPath = pubspecPath.parent_path() / "pubspec.yaml.bak";
     std::error_code ec;
-    fs::copy_file(pubspecPath, bakPath, fs::copy_options::overwrite_existing, ec);
+    if (fs::exists(bakPath)) fs::remove(bakPath);
+    fs::copy_file(pubspecPath, bakPath, ec);
     if (ec) {
         std::cerr << "[warn] Could not create backup: " << ec.message() << "\n";
     } else {

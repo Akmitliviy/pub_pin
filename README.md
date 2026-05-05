@@ -126,9 +126,9 @@ Resolving dependencies…
 
 ## Notes
 
-- The tool rewrites version constraints as `X.Y.Z` (caret syntax).
+- The tool rewrites version constraints as `^X.Y.Z` (caret syntax).
   If you use range constraints like `>=1.0.0 <2.0.0`, they will be
-  normalised to `X.Y.Z` after the first run.
+  normalised to `^X.Y.Z` after the first run.
 - `pubspec.yaml.bak` is overwritten on every run — keep your version
   control history if you need older snapshots.
 - The binary has **no runtime dependencies** — no Dart, no Python, no
