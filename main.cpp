@@ -49,7 +49,7 @@ namespace fs = std::filesystem;
 // Returns empty string and prints an error on failure.
 static std::string runCommand(const std::string& cmd, bool printOutput = true)
 {
-    const std::string& fullCmd = cmd;
+    std::string fullCmd = cmd;
 #ifndef _WIN32
     // Redirect stderr → stdout so we capture warnings too
     fullCmd += " 2>&1";
